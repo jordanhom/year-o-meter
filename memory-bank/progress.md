@@ -1,45 +1,24 @@
-# Progress Log - time_left_this_year
+# Progress Log - Year-O-Meter
 
-## Initial State - Functionally Complete (Based on `time_left.html`)
+## Initial State - Functionally Complete / UX Refinements Pending
 
-**Status:** The application, as implemented in `time_left.html`, is functionally complete according to the features observed in that file and documented in `projectbrief.md`. All described features (countdown, progress, optional grid, seasonal themes, options panel) are working.
+**Status:** The application, as implemented in `time_left.html`, is functionally complete according to the features observed and documented in `projectbrief.md`. A comprehensive UX review by Dr. Reed has identified critical refinements needed before the application meets desired quality standards.
 
-**Completed Tasks (Inferred from `time_left.html`):**
+**Completed Tasks (Inferred from `time_left.html` & Initial Setup):**
 
-*   **Core Display:**
-    *   Dynamic Date/Time display implemented.
-    *   Dynamic Countdown (D/H/M/S) implemented.
-    *   Dynamic Progress Bar implemented.
-*   **Calculations:**
-    *   Time remaining calculation implemented.
-    *   Year progress percentage calculation implemented.
-    *   Leap year handling implemented (`isLeapYear` function used for grid/progress).
-*   **Optional Features:**
-    *   Milliseconds display toggle implemented (affects time/countdown and update interval).
-    *   Seasonal styling toggle implemented (applies CSS classes based on `getSeason`).
-    *   Year Grid display toggle implemented.
-    *   Grid rendering logic (30x13 layout) implemented with past/today/future coloring.
-    *   Grid optimization (build once, update classes) implemented.
-    *   Grid Circles toggle implemented (adds `.circles` class).
-    *   Grid Holidays toggle implemented (calculates US holidays via `getHolidays`, applies `.holiday` class).
-    *   Grid Solstice toggle implemented (uses approximate dates from `getSolsticeDays`, applies `.longest-day`/`.shortest-day` classes).
-*   **User Interface:**
-    *   Layout structured in HTML.
-    *   Styling applied via embedded CSS.
-    *   Collapsible "Extra Options" section implemented with working toggles.
-    *   Dependent grid options correctly enabled/disabled.
-    *   Tooltips (`title` attribute) added to grid day blocks.
-    *   Responsive design implemented via CSS media queries.
-*   **Technical:**
-    *   Dynamic updates via `setInterval` implemented, with adjustable frequency.
-    *   Code includes comments explaining logic.
+*   **Core Display:** Implemented (Date/Time, Countdown, Progress Bar).
+*   **Calculations:** Implemented (Time remaining, Progress %, Leap Year).
+*   **Optional Features:** Implemented (Milliseconds, Seasonal Styling, Year Grid, Circles, Holidays, Solstice).
+*   **User Interface:** Implemented (Layout, Styling, Collapsible Options, Responsive Design).
+*   **Technical:** Implemented (Dynamic Updates, Comments).
+*   **Documentation:** Initial Memory Bank created, project renamed to Year-O-Meter.
+*   **UX Review:** Completed by Dr. Reed. Actionable tasks documented. (NEW)
 
 **Next Steps:**
 
-1.  **Review Documentation:** Verify the accuracy and completeness of the newly created Memory Bank files.
+1.  **Implement UX Refinements:** Address the tasks outlined in `memory-bank/ux-refinement-guide.md`, prioritizing the High Priority items related to accessibility and core usability. (NEW)
 2.  **Code Review (Optional but Recommended):** Perform a detailed review of the existing code in `time_left.html` for potential bugs, improvements, clarity, and adherence to best practices.
-3.  **Refactoring (Consideration):** Evaluate splitting the HTML, CSS, and JavaScript into separate files (`index.html`, `style.css`, `main.js`, potentially other JS modules) for better maintainability and organization.
-4.  **Future Enhancements:** Consider items listed as "Out of Scope" in `projectbrief.md` or identify new features based on review.
+3.  **Refactoring (Consideration):** Evaluate splitting the HTML, CSS, and JavaScript into separate files (`index.html`, `style.css`, `main.js`, potentially other JS modules) for better maintainability and organization. This could be done before or after the UX refinements.
 
 **Out of Scope (Potential Future Ideas):**
 
