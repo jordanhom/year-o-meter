@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year-O-Meter</title> <!-- Updated Title -->
+  <link rel="stylesheet" href="css/style.css"> <!-- Link to CSS -->
+</head>
+<body>
+  <div class="container" id="main-container">
+    <!-- Current Date and Time Display -->
+    <div class="datetime-wrap" id="prominent-datetime">
+      <span class="date-line" id="date-line"></span>
+      <!-- Accessibility: Add aria-live for dynamic time updates -->
+      <span class="time-line" id="time-line" aria-live="polite" aria-atomic="true"></span>
+    </div>
+
+    <!-- Countdown Title -->
+    <div class="title">Time remaining this year</div>
+
+    <!-- Progress Bar and Countdown Overlay -->
+    <div class="progress-bar-outer">
+      <div class="progress-bar-inner" id="progress"></div>
+      <!-- Accessibility: Add aria-live for dynamic countdown updates -->
+      <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <!-- Year Grid (Initially Hidden) -->
+    <!-- Accessibility: Add role="grid" and aria-label -->
+    <div class="year-grid-component" id="year-grid-component" style="display:none;" aria-label="Grid showing days of the year">
+      <div class="year-grid" id="year-grid" role="grid"></div>
+    </div>
+
+    <!-- Collapsible Extra Options Section -->
+    <section class="extra-options-section" id="extra-options-section">
+      <!-- Button to toggle the options panel -->
+      <button type="button"
+        class="extra-options-header"
+        id="extra-options-toggle"
+        aria-expanded="false"
+        aria-controls="features-toggles">
+        <span class="carrot" id="carrot">&#9654;</span>
+        <!-- Updated Toggle Text -->
+        <span>Customize View</span>
+      </button>
+      <!-- Container for the actual toggles -->
+      <div class="features-toggles collapsed" id="features-toggles" aria-hidden="true">
+        <!-- Milliseconds Toggle -->
+        <div class="toggle-block">
+          <input type="checkbox" id="toggle-ms" />
+          <label for="toggle-ms">Show milliseconds</label>
+        </div>
+        <!-- Seasonal Styling Toggle -->
+        <div class="toggle-block">
+          <input type="checkbox" id="toggle-season" />
+          <label for="toggle-season">Style for current season</label>
+        </div>
+        <!-- Consider replacing <hr> with CSS border/margin -->
+        <hr>
+        <!-- Year Grid Toggle -->
+        <div class="toggle-block">
+          <input type="checkbox" id="toggle-grid" />
+          <label for="toggle-grid"><b>Show year grid</b></label>
+        </div>
+        <!-- Options dependent on the year grid being visible -->
+        <div class="grid-options-group">
+          <div class="toggle-block">
+            <input type="checkbox" id="toggle-circles" disabled />
+            <label for="toggle-circles">Use circles for grid</label>
+          </div>
+          <div class="toggle-block">
+            <input type="checkbox" id="toggle-holidays" disabled />
+            <label for="toggle-holidays">Show holidays</label>
+          </div>
+          <div class="toggle-block">
+            <input type="checkbox" id="toggle-solstice" disabled />
+            <label for="toggle-solstice">Show longest/shortest day</label>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Link to JavaScript, defer ensures it runs after HTML parsing -->
+  <script src="js/main.js" defer></script>
+</body>
+</html>

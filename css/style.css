@@ -1,0 +1,435 @@
+/* --- Base Styles --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  background: #f8f9fa; /* Light grey background */
+  color: #333; /* Darker text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  transition: background 0.3s; /* Smooth background transition */
+}
+.container {
+  text-align: center;
+  padding: 2rem 0 2rem 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  background: #ffffff; /* White container */
+  min-width: 260px;
+  max-width: 95vw; /* Responsive width */
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+/* --- Seasonal Container Backgrounds --- */
+.container.season-spring { background: #eafff4; }
+.container.season-summer { background: #fffbe6; }
+.container.season-autumn { background: #fff6ea; }
+.container.season-winter { background: #eef7fb; }
+
+/* --- Date/Time Display --- */
+.datetime-wrap {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
+  width: 100%;
+  border-radius: 0; /* Full width */
+  background: #e9f1fc; /* Light blue background */
+  border-bottom: 3px solid #a8c5e9; /* Accent border */
+  padding: 1.1em 0;
+  box-shadow: 0 0.5px 2px rgba(58,110,165,0.05);
+  font-weight: 600;
+  transition: background 0.3s, border-color 0.3s;
+}
+/* Seasonal Date/Time Backgrounds */
+.container.season-spring .datetime-wrap { background: #dbffe6; border-bottom-color: #7bcfa5; }
+.container.season-summer .datetime-wrap { background: #fff7c2; border-bottom-color: #e6d36a; }
+.container.season-autumn .datetime-wrap { background: #ffe5ce; border-bottom-color: #e6a86a; }
+.container.season-winter .datetime-wrap { background: #e5f1fa; border-bottom-color: #8cbbe6; }
+
+.date-line, .time-line {
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums; /* Keep numbers aligned */
+  letter-spacing: 0.02em;
+  color: #2c5aa3; /* Primary blue text */
+  font-weight: bold;
+  text-shadow: 0 1px 2px #fff; /* Subtle text shadow */
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.date-line {
+  font-size: 1.5rem; /* Larger date */
+  font-weight: 700;
+}
+
+/* --- Title --- */
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+  color: #444; /* Dark grey */
+}
+
+/* --- Progress Bar & Countdown Container --- */
+.progress-bar-outer {
+  position: relative; /* For positioning inner bar and countdown */
+  width: 100%;
+  height: 76px;
+  margin: 0 auto 0.5em auto;
+  background: #eef1f5; /* Light grey track */
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex; /* Center countdown text */
+  align-items: center;
+  justify-content: center;
+  max-width: 600px; /* Limit width */
+  transition: background 0.3s;
+}
+/* Seasonal Progress Bar Backgrounds */
+.container.season-spring .progress-bar-outer { background: #b6e9ce; }
+.container.season-summer .progress-bar-outer { background: #fff6c0; }
+.container.season-autumn .progress-bar-outer { background: #ffe3c0; }
+.container.season-winter .progress-bar-outer { background: #d1e7f7; }
+
+.progress-bar-inner {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0; /* Width controlled by JS */
+  background: linear-gradient(90deg, #4a90e2 0%, #7aaee8 100%); /* Blue gradient */
+  border-radius: 0;
+  /* Smooth width transition, bouncy effect */
+  transition: width 0.2s cubic-bezier(.4,2,.4,1), background 0.3s;
+  z-index: 1; /* Below countdown text */
+}
+/* Seasonal Progress Bar Inner Gradients */
+.container.season-spring .progress-bar-inner { background: linear-gradient(90deg,#8ceabb 0%,#378f6d 100%); }
+.container.season-summer .progress-bar-inner { background: linear-gradient(90deg,#ffe259 0%,#ffa751 100%); }
+.container.season-autumn .progress-bar-inner { background: linear-gradient(90deg,#ffb347 0%,#ff6c3a 100%); }
+.container.season-winter .progress-bar-inner { background: linear-gradient(90deg,#a1c4fd 0%,#c2e9fb 100%); }
+
+/* --- Countdown Text (Overlay) --- */
+.countdown {
+  position: relative; /* Position above progress bar */
+  z-index: 2; /* Above progress bar */
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  justify-content: center;
+  gap: 2.1rem; /* Space between units */
+  font-size: 2.2rem;
+  font-variant-numeric: tabular-nums; /* Keep numbers aligned */
+  font-weight: 700;
+  user-select: none; /* Prevent text selection */
+  padding: 0 1.2rem;
+  color: #fff; /* White text */
+  /* Refined text-shadow (Medium Priority Task 1) - Example refinement */
+  text-shadow:
+    0 1px 3px rgba(0,0,0,0.30), /* Reduced blur/offset */
+    0 0px 1px rgba(0,0,0,0.45);
+  pointer-events: none; /* Allow clicks through to progress bar if needed */
+}
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px; /* Ensure some spacing */
+}
+.number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.label {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-top: 0.22em;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-shadow: /* Enhance readability */
+    0 1px 4px rgba(0,0,0,0.25),
+    0 0.5px 1px rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+  border-radius: 4px;
+  padding: 0.06em 0.4em;
+  transition: color 0.2s, background 0.2s;
+  line-height: 1.2;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone; /* Ensures background/padding apply correctly if label wraps lines */
+}
+/* Style labels differently when progress bar is nearly empty */
+.countdown.low-progress .label {
+  color: #2c5aa3; /* Use primary blue text */
+  background: rgba(255,255,255,0.75); /* Light background */
+  text-shadow: 0 1px 3px #fff;
+}
+
+/* --- Year Grid Component --- */
+.year-grid-component {
+  margin: 2.2rem auto 0 auto;
+  width: 479px; /* Fixed width based on grid cells */
+  max-width: 100vw;
+  min-width: 238px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 500px) {
+  .year-grid-component {
+    width: 100vw;
+    min-width: 0;
+    padding: 0 2vw;
+  }
+  .year-grid {
+    /* Allow grid to shrink on very small screens */
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+  }
+}
+.year-grid {
+  display: grid;
+  /* Define grid columns and rows */
+  grid-template-columns: repeat(30, 15px);
+  grid-template-rows: repeat(13, 15px);
+  gap: 1px; /* Space between blocks */
+  width: 479px; /* 30 columns * 15px width + 29 gaps * 1px */
+  max-width: 100vw;
+  background: #eef1f5; /* Match progress bar track */
+  border-radius: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden; /* Hide overflow if any */
+  justify-items: center; /* Center blocks horizontally */
+  align-items: center; /* Center blocks vertically */
+  transition: background 0.3s;
+}
+/* Seasonal Grid Backgrounds */
+.container.season-spring .year-grid { background: #b6e9ce; }
+.container.season-summer .year-grid { background: #fff6c0; }
+.container.season-autumn .year-grid { background: #ffe3c0; }
+.container.season-winter .year-grid { background: #d1e7f7; }
+
+/* Individual day block styling */
+.day-block {
+  width: 15px;
+  height: 15px;
+  background: #ffffff; /* Default/Future blocks are white */
+  border-radius: 0; /* Default square */
+  transition: background 0.18s, border 0.18s, border-radius 0.2s;
+  box-sizing: border-box;
+  border: 0.5px solid #dde2e8; /* Light border */
+  display: block;
+  outline: none; /* Remove default browser outline */
+}
+/* Style for circle grid option */
+.year-grid.circles .day-block {
+  border-radius: 50%;
+}
+/* Seasonal colors for past/future/today blocks */
+/* TODO (High Priority): Verify contrast for these colors */
+.container.season-spring .day-block.past { background: #7bcfa5; }
+.container.season-summer .day-block.past { background: #ffe259; }
+.container.season-autumn .day-block.past { background: #ffb347; }
+.container.season-winter .day-block.past { background: #a1c4fd; }
+.container.season-spring .day-block.future { background: #eafff4; }
+.container.season-summer .day-block.future { background: #fffbe6; }
+.container.season-autumn .day-block.future { background: #fff6ea; }
+.container.season-winter .day-block.future { background: #f6faff; }
+.container.season-spring .day-block.today { background: #34e89e; border-color: #0a8d49; }
+.container.season-summer .day-block.today { background: #ffe259; border-color: #ffb347; }
+.container.season-autumn .day-block.today { background: #ffb347; border-color: #d97f22; }
+.container.season-winter .day-block.today { background: #a1c4fd; border-color: #3a6ea5; }
+
+/* Default colors for past/today/future blocks */
+/* TODO (High Priority): Verify contrast for these colors */
+.day-block.past {
+  background: #a8c5e9; /* Light blue */
+}
+.day-block.today {
+  background: #4a90e2; /* Primary blue */
+  border: 2px solid #2c5aa3; /* Darker blue border */
+  box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(58,110,165,0.15); /* Highlight effect */
+  position: relative; /* Ensure it's above others if overlapping */
+  z-index: 2;
+}
+.day-block.future {
+  background: #ffffff; /* White */
+}
+/* Style for unused blocks at the end of the grid */
+.day-block.overflow {
+  background: transparent;
+  border: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+/* Special day markers (use !important to override seasonal/past/today styles) */
+/* TODO (High Priority): Verify contrast for these colors */
+.day-block.holiday {
+  background: #e84a5f !important; /* Red */
+  border-color: #e84a5f !important;
+  box-shadow: 0 0 0 1.5px #fff; /* White outline */
+}
+.day-block.longest-day {
+  background: #4bd865 !important; /* Green */
+  border-color: #3fa855 !important;
+  box-shadow: 0 0 0 1.5px #fff;
+}
+.day-block.shortest-day {
+  background: #3a6ea5 !important; /* Darker blue */
+  border-color: #1a2a44 !important;
+  box-shadow: 0 0 0 1.5px #fff;
+}
+/* Accessibility: Style for keyboard focus */
+.day-block:focus-visible {
+  outline: 2px solid #6a54d4; /* Purple outline */
+  outline-offset: 0;
+}
+
+/* --- Extra Options Section --- */
+.extra-options-section {
+  width: 100%;
+  max-width: 400px; /* Limit width */
+  margin: 1.6em auto 0 auto;
+  background: #fcfdff; /* Very light background */
+  border: 1px solid #cdd9e8; /* Light border */
+  border-radius: 7px;
+  box-shadow: 0 2px 6px rgba(228, 231, 237, 0.7); /* Soft shadow */
+  transition: box-shadow 0.2s;
+  overflow: hidden; /* Needed for collapse transition */
+}
+.extra-options-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.13em;
+  font-weight: 600;
+  color: #2c5aa3; /* Primary blue */
+  padding: 0.7em 1.2em;
+  user-select: none; /* Prevent text selection */
+  background: #f0f6ff; /* Light blue header background */
+  border: none;
+  outline: none;
+  width: 100%;
+  transition: background 0.12s;
+}
+.extra-options-header:focus, .extra-options-header:hover {
+  background: #e9f1fc; /* Slightly darker on hover/focus */
+}
+.carrot { /* The '>' icon */
+  font-size: 1.15em;
+  display: inline-block;
+  transition: transform 0.2s; /* Animate rotation */
+  margin-right: 0.4em;
+}
+.carrot.open {
+  transform: rotate(90deg); /* Point down when open */
+}
+.features-toggles { /* Container for checkboxes */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align checkboxes left */
+  gap: 0.8em;
+  width: 100%;
+  padding: 0 1.4em 0.8em 1.4em;
+  font-size: 1.07em;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  opacity: 1;
+  max-height: 1000px; /* Allow space for content */
+  overflow: visible;
+  /* Smooth collapse/expand animation */
+  transition: max-height 0.32s cubic-bezier(.5,0,.5,1), opacity 0.25s;
+}
+.features-toggles.collapsed {
+  opacity: 0;
+  max-height: 0; /* Collapse */
+  padding-bottom: 0 !important; /* Remove padding when collapsed */
+  pointer-events: none; /* Prevent interaction when collapsed */
+  overflow: hidden;
+}
+.toggle-block { /* Wrapper for checkbox + label */
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  color: #555; /* Grey text */
+  user-select: none;
+  font-weight: 500;
+  margin-top: 0.1em;
+}
+.toggle-block label {
+  cursor: pointer;
+  opacity: 0.88; /* Slightly faded */
+}
+/* Style disabled options */
+.toggle-block input[type="checkbox"]:disabled + label {
+  opacity: 0.45 !important;
+  cursor: not-allowed;
+}
+.toggle-block input[type="checkbox"]:disabled {
+  filter: grayscale(1) opacity(0.6);
+  pointer-events: none;
+}
+.features-toggles hr { /* Separator line */
+  width: 100%;
+  border: 0.5px solid #dde2e8; /* Light grey line */
+  margin: 0.6em 0;
+}
+/* Indent options related to the grid */
+.grid-options-group {
+  /* Increased margin (Medium Priority Task 3) */
+  margin-left: 2.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 600px) {
+  /* Adjust options section width */
+  .extra-options-section {
+    min-width: 0;
+    max-width: 98vw;
+  }
+  /* Adjust toggle font size and padding */
+  .features-toggles {
+    font-size: 1em;
+    padding: 0 0.8em 0.5em 0.8em;
+  }
+  /* Ensure grid component takes full width */
+  .year-grid-component, .year-grid {
+    width: 100vw;
+    min-width: 0;
+    padding: 0 1vw;
+    max-width: 100vw;
+  }
+  /* Explicitly set grid width again inside media query */
+  .year-grid {
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+  }
+}
+
+/* Optional: Media query for ultra-wide screens (Low Priority Task 4) */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 700px; /* Example: Slightly wider container */
+  }
+  .year-grid-component {
+     /* Adjust grid component width if needed, or let it center */
+  }
+}

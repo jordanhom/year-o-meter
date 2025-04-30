@@ -35,8 +35,9 @@ It's designed as a simple, focused tool for time awareness that requires no user
 ## Technology Stack
 
 *   **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+ features)
+*   **Structure:** Separate files for structure (`index.html`), styling (`css/style.css`), and logic (`js/main.js`).
 *   **Libraries:** None
-*   **Development:** Runs directly in the browser from the single `time_left.html` file. No build process required.
+*   **Development:** Runs directly in the browser. No build process required.
 
 ## Getting Started
 
@@ -45,25 +46,26 @@ It's designed as a simple, focused tool for time awareness that requires no user
     git clone <your-repository-url>
     cd year-o-meter
     ```
-2.  **Open the file:** Simply open the `time_left.html` file directly in your web browser (e.g., double-click the file or use `File > Open` in your browser).
-    *   *(Note: While a local HTTP server isn't strictly required because this project doesn't use ES Modules across files, using one during development is still good practice.)*
+2.  **Open the file:** Simply open the `index.html` file directly in your web browser (e.g., double-click the file or use `File > Open` in your browser).
+    *   *(Note: Using a local HTTP server during development is still good practice.)*
 3.  **Use the application:**
     *   The countdown and progress bar will start automatically.
-    *   Expand the "Extra Options…" panel to toggle features like milliseconds, seasonal styling, and the year grid.
+    *   Expand the "Customize View" panel (previously "Extra Options…") to toggle features like milliseconds, seasonal styling, and the year grid.
     *   If the grid is enabled, explore its sub-options (circles, holidays, solstice).
 
 ## Current Status
 
-*   **Functionally Complete:** The application as implemented in `time_left.html` includes all features described above.
-*   **Initial Documentation:** Core Memory Bank files have been created based on the existing code.
-*   **Next Steps:** Potential next steps include code review, refactoring into separate files (HTML, CSS, JS) for better organization, or adding new features.
+*   **Functionally Complete:** The application includes all features described above.
+*   **Refactored:** The codebase has been split into separate HTML, CSS, and JavaScript files for better organization and maintainability.
+*   **Initial Documentation:** Core Memory Bank files have been created and updated.
+*   **Next Steps:** Potential next steps include implementing UX refinements (accessibility, clarity), code review, or adding new features.
 
 ## Future Ideas (Potential)
 
-*   Refactoring into separate files/modules.
 *   Saving user preferences (e.g., using `localStorage`).
 *   Support for different locales (holidays, date formats).
 *   More configuration options (colors, grid layout).
+*   Adding unit tests.
 
 ## Contributing
 
